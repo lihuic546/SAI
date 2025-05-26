@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{361A9A7D-C2D8-3DD3-865C-A5956AA2E9DA}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>x64</Platform>
+    <ProjectName>autd3-link-soem-populate</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseDebugLibraries>true</UseDebugLibraries>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-mkdir.rule">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Creating directories for 'autd3-link-soem-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -Dcfgdir=/Debug -P C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/autd3-link-soem-populate-prefix/tmp/autd3-link-soem-populate-mkdirs.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/autd3-link-soem-populate-prefix/src/autd3-link-soem-populate-stamp/Debug/autd3-link-soem-populate-mkdir
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-mkdir</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-download.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Performing download step (download, verify and extract) for 'autd3-link-soem-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Users\shinolab\Desktop\sai\build\_deps
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/autd3-link-soem-populate-prefix/src/autd3-link-soem-populate-stamp/download-autd3-link-soem-populate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/autd3-link-soem-populate-prefix/src/autd3-link-soem-populate-stamp/verify-autd3-link-soem-populate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE -P C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/autd3-link-soem-populate-prefix/src/autd3-link-soem-populate-stamp/extract-autd3-link-soem-populate.cmake
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/autd3-link-soem-populate-prefix/src/autd3-link-soem-populate-stamp/Debug/autd3-link-soem-populate-download
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\download-autd3-link-soem-populate.cmake;C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\autd3-link-soem-populate-urlinfo.txt;C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-mkdir;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-download</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-update.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No update step for 'autd3-link-soem-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/autd3-link-soem-populate-prefix/src/autd3-link-soem-populate-stamp/Debug/autd3-link-soem-populate-update
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\autd3-link-soem-populate-update-info.txt;C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-download;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-update</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-patch.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No patch step for 'autd3-link-soem-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/autd3-link-soem-populate-prefix/src/autd3-link-soem-populate-stamp/Debug/autd3-link-soem-populate-patch
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\autd3-link-soem-populate-patch-info.txt;C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-update;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-patch</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-configure.rule">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No configure step for 'autd3-link-soem-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/autd3-link-soem-populate-prefix/src/autd3-link-soem-populate-stamp/Debug/autd3-link-soem-populate-configure
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\tmp\autd3-link-soem-populate-cfgcmd.txt;C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-patch;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-configure</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-build.rule">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No build step for 'autd3-link-soem-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/autd3-link-soem-populate-prefix/src/autd3-link-soem-populate-stamp/Debug/autd3-link-soem-populate-build
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-configure;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-build</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-install.rule">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No install step for 'autd3-link-soem-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/autd3-link-soem-populate-prefix/src/autd3-link-soem-populate-stamp/Debug/autd3-link-soem-populate-install
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-build;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-install</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-test.rule">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">No test step for 'autd3-link-soem-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+cd C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-build
+if %errorlevel% neq 0 goto :cmEnd
+C:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E echo_append
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/autd3-link-soem-populate-prefix/src/autd3-link-soem-populate-stamp/Debug/autd3-link-soem-populate-test
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-install;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-test</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\52999ba9575b55f87999bf6c01a9e69d\autd3-link-soem-populate-complete.rule">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Completed 'autd3-link-soem-populate'</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -E make_directory C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/CMakeFiles/Debug
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/CMakeFiles/Debug/autd3-link-soem-populate-complete
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/autd3-link-soem-populate-prefix/src/autd3-link-soem-populate-stamp/Debug/autd3-link-soem-populate-done
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-install;C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-mkdir;C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-download;C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-update;C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-patch;C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-configure;C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-build;C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\src\autd3-link-soem-populate-stamp\Debug\autd3-link-soem-populate-test;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\Debug\autd3-link-soem-populate-complete</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\91417fe6ba957045d4e4cbbc1cbe76d6\autd3-link-soem-populate.rule">
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\Debug\autd3-link-soem-populate-complete;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\autd3-link-soem-populate</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <VerifyInputsAndOutputsExist Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</VerifyInputsAndOutputsExist>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild -BC:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild --check-stamp-file C:/Users/shinolab/Desktop/sai/build/_deps/autd3-link-soem-subbuild/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\ExternalProject.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\ExternalProject\PatchInfo.txt.in;C:\Program Files\CMake\share\cmake-4.0\Modules\ExternalProject\RepositoryInfo.txt.in;C:\Program Files\CMake\share\cmake-4.0\Modules\ExternalProject\UpdateInfo.txt.in;C:\Program Files\CMake\share\cmake-4.0\Modules\ExternalProject\cfgcmd.txt.in;C:\Program Files\CMake\share\cmake-4.0\Modules\ExternalProject\download.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\ExternalProject\extractfile.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\ExternalProject\mkdirs.cmake.in;C:\Program Files\CMake\share\cmake-4.0\Modules\ExternalProject\shared_internal_commands.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-4.0\Modules\Platform\WindowsPaths.cmake;C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\4.0.2\CMakeSystem.cmake;C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\autd3-link-soem-populate-prefix\tmp\autd3-link-soem-populate-mkdirs.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\autd3-link-soem-populate">
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\ZERO_CHECK.vcxproj">
+      <Project>{736AF40E-D484-327B-AC0C-282B26393E17}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

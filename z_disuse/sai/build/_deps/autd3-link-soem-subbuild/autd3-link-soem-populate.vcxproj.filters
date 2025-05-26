@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\9fad707565d1cd3cb9585cc033cfaf5a\autd3-link-soem-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\52999ba9575b55f87999bf6c01a9e69d\autd3-link-soem-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\91417fe6ba957045d4e4cbbc1cbe76d6\autd3-link-soem-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-link-soem-subbuild\CMakeFiles\autd3-link-soem-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{E2B59411-53D5-3461-AC7A-C2F9449EB48E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,12 @@
+# This is a generated file and its contents are an internal implementation detail.
+# The download step will be re-executed if anything in this file changes.
+# No other meaning or use of this file is supported.
+
+method=url
+command=C:/Program Files/CMake/bin/cmake.exe;-DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE;-P;C:/Users/shinolab/Desktop/sai/build/_deps/autd3-subbuild/autd3-populate-prefix/src/autd3-populate-stamp/download-autd3-populate.cmake;COMMAND;C:/Program Files/CMake/bin/cmake.exe;-DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE;-P;C:/Users/shinolab/Desktop/sai/build/_deps/autd3-subbuild/autd3-populate-prefix/src/autd3-populate-stamp/verify-autd3-populate.cmake;COMMAND;C:/Program Files/CMake/bin/cmake.exe;-DCMAKE_MESSAGE_LOG_LEVEL=VERBOSE;-P;C:/Users/shinolab/Desktop/sai/build/_deps/autd3-subbuild/autd3-populate-prefix/src/autd3-populate-stamp/extract-autd3-populate.cmake
+source_dir=C:/Users/shinolab/Desktop/sai/build/_deps/autd3-src
+work_dir=C:/Users/shinolab/Desktop/sai/build/_deps
+url(s)=https://github.com/shinolab/autd3-cpp/releases/download/v30.0.1/autd3-v30.0.1-win-x64.zip
+hash=
+      no_extract=
+

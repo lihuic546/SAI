@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/Users/shinolab/Desktop/sai/build/_deps/autd3-subbuild/CMakeFiles/autd3-populate"
+		},
+		{
+			"file" : "C:/Users/shinolab/Desktop/sai/build/_deps/autd3-subbuild/CMakeFiles/fc2b15f0e2842ddf0f9a1cd84c726d81/autd3-populate.rule"
+		},
+		{
+			"file" : "C:/Users/shinolab/Desktop/sai/build/_deps/autd3-subbuild/CMakeFiles/0d8b9a25d289e6919d44ca65c169dad0/autd3-populate-complete.rule"
+		},
+		{
+			"file" : "C:/Users/shinolab/Desktop/sai/build/_deps/autd3-subbuild/CMakeFiles/ecd073288c52ae89f16402a47243be7d/autd3-populate-build.rule"
+		},
+		{
+			"file" : "C:/Users/shinolab/Desktop/sai/build/_deps/autd3-subbuild/CMakeFiles/ecd073288c52ae89f16402a47243be7d/autd3-populate-configure.rule"
+		},
+		{
+			"file" : "C:/Users/shinolab/Desktop/sai/build/_deps/autd3-subbuild/CMakeFiles/ecd073288c52ae89f16402a47243be7d/autd3-populate-download.rule"
+		},
+		{
+			"file" : "C:/Users/shinolab/Desktop/sai/build/_deps/autd3-subbuild/CMakeFiles/ecd073288c52ae89f16402a47243be7d/autd3-populate-install.rule"
+		},
+		{
+			"file" : "C:/Users/shinolab/Desktop/sai/build/_deps/autd3-subbuild/CMakeFiles/ecd073288c52ae89f16402a47243be7d/autd3-populate-mkdir.rule"
+		},
+		{
+			"file" : "C:/Users/shinolab/Desktop/sai/build/_deps/autd3-subbuild/CMakeFiles/ecd073288c52ae89f16402a47243be7d/autd3-populate-patch.rule"
+		},
+		{
+			"file" : "C:/Users/shinolab/Desktop/sai/build/_deps/autd3-subbuild/CMakeFiles/ecd073288c52ae89f16402a47243be7d/autd3-populate-test.rule"
+		},
+		{
+			"file" : "C:/Users/shinolab/Desktop/sai/build/_deps/autd3-subbuild/CMakeFiles/ecd073288c52ae89f16402a47243be7d/autd3-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"autd3-populate"
+		],
+		"name" : "autd3-populate"
+	}
+}

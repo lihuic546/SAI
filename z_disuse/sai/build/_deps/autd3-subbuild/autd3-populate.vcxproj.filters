@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-subbuild\CMakeFiles\ecd073288c52ae89f16402a47243be7d\autd3-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-subbuild\CMakeFiles\ecd073288c52ae89f16402a47243be7d\autd3-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-subbuild\CMakeFiles\ecd073288c52ae89f16402a47243be7d\autd3-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-subbuild\CMakeFiles\ecd073288c52ae89f16402a47243be7d\autd3-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-subbuild\CMakeFiles\ecd073288c52ae89f16402a47243be7d\autd3-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-subbuild\CMakeFiles\ecd073288c52ae89f16402a47243be7d\autd3-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-subbuild\CMakeFiles\ecd073288c52ae89f16402a47243be7d\autd3-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-subbuild\CMakeFiles\ecd073288c52ae89f16402a47243be7d\autd3-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-subbuild\CMakeFiles\0d8b9a25d289e6919d44ca65c169dad0\autd3-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-subbuild\CMakeFiles\fc2b15f0e2842ddf0f9a1cd84c726d81\autd3-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\shinolab\Desktop\sai\build\_deps\autd3-subbuild\CMakeFiles\autd3-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{9EF498DC-FBC0-3D78-BAD6-6AACF1A6F43A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -80,9 +80,9 @@ namespace Runner_sai
                 }
 
                 // ② 波形送信(10s)
-                var wave = new Custom(
+                var wave = new AUTD3Sharp.Modulation.Custom(
                     buffer: buffer,
-                    samplingConfig: sampleRate * Hz
+                    samplingConfig: 6000f * Hz
                 );
                 autd.Send(wave);
 

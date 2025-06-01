@@ -50,7 +50,7 @@ namespace TwinCAT_sai
             using var autd = Controller.Open(devices, new TwinCAT());
 
             // Runner で一連のデモを実行
-            Runner0522.Run(autd);
+            Runner0601.Run(autd);
         }
     }
 }

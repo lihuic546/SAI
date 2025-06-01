@@ -16,7 +16,7 @@ namespace Runner_sai
         private static readonly Random _rng = new Random();
         public static (int carrierFreq, int envelopeFreq) NextFreqPair()
         {
-            int[] carrierList  = { 10, 30, 200 };
+            int[] carrierList  = { 10, 40, 200 };
             int[] envelopeList = { 2, 5, 10 };
 
             int i1, i2;
@@ -48,13 +48,13 @@ namespace Runner_sai
                 pos: autd.Center() + new Vector3(0, 0, 150),
                 option: new FocusOption()
             );
-            autd.Send(focus);
 
             // 焦点位置確認用
             var m = new Sine(freq: 150 * Hz, option: new SineOption());
-            autd.Send(m);
-            Thread.Sleep(5000);
-            autd.Send(new Silencer());
+            autd.Send((m, focus));
+            Thread.Sleep(15000);
+            autd.Send((new Silencer(), new Null()));
+            Thread.Sleep(3000);
 
             while (true)
             {
@@ -84,10 +84,10 @@ namespace Runner_sai
                     buffer: buffer,
                     samplingConfig: 1000f * Hz
                 );
-                autd.Send(wave);
+                autd.Send((wave, focus));
 
                 Thread.Sleep(10000);
-                autd.Send(new Silencer());
+                autd.Send((new Silencer(), new Null()));
                 Console.WriteLine("一個前の波と同じ:s 異なる:d / 終了:enter");
 
                 // ③ 有効なキーが押されるまで繰り返し待ち

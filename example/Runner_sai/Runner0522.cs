@@ -31,6 +31,12 @@ namespace Runner_sai
         }
     }
 
+    // 整数の最大公約数をユークリッドの互除法で計算
+    static int Gcd(int a, int b)
+    {
+        return b == 0 ? a : Gcd(b, a % b);
+    }
+
     public static class Runner0522
     {
         public static void Run(Controller autd)
@@ -38,13 +44,14 @@ namespace Runner_sai
             // 無音状態の初期化
             autd.Send(new Silencer());
 
-            // フォーカス位置
+            // 焦点位置設定
             var focus = new Focus(
                 pos: autd.Center() + new Vector3(0, 0, 150),
                 option: new FocusOption()
             );
             autd.Send(focus);
 
+            // 焦点位置確認用
             var m = new Sine(freq: 150 * Hz, option: new SineOption());
             autd.Send(m);
             Thread.Sleep(5000);
@@ -56,44 +63,35 @@ namespace Runner_sai
                 var (cFreq, eFreq) = RandomUtil.NextFreqPair();
                 Console.WriteLine($"→ carrier={cFreq}Hz, envelope={eFreq}Hz");
 
-                const int sampleRate = 1000;  // 1000 サンプル/s
-                const double duration = 10; // 10s
-                int length = (int)(sampleRate * duration);
-                var wave = new double[length];
+                const int sampleRate = 6000; // サンプリング周波数 
+                int sample = Gcd(cFreq, eFreq);  // carrier と envelope の最大公約数
+                int periodSamples = sampleRate / gcd; // 波形周期: 1/gcd(s) * sampleRate(data/s)
 
-
-                for (int i = 0; i < length; i++)
+                var buffer = new byte[periodSamples];
+                for (int i = 0; i < periodSamples; i++)
                 {
                     double t = i / (double)sampleRate;
+
                     double carrier = Math.Sin(2 * Math.PI * cFreq * t);
                     double envelope = Math.Sin(2 * Math.PI * eFreq * t);
-                    wave[i] = carrier * envelope;
+                    double val = carrier * envelope;
+
+                    int intLevel = (int)Math.Round((val * 0.5 + 0.5) * 255.0);
+                    buffer[i] = (byte)intLevel;
                 }
-
-                // new Custom(
-                //     buffer: [0xFF, 0x00],
-                //     samplingConfig: 4000f * Hz
-                // );
-
 
                 // ② 波形送信(10s)
-                for (int i = 0; i < length; i++)
-                {
-                    byte intensity = (byte)((wave[i] + 1.0) * 0.5 * 255.0);
-                    var igain = new Uniform(
-                        intensity: new EmitIntensity(intensity),
-                        phase: Phase.Zero
-                    );
-                    autd.Send(igain);
-                    Thread.Sleep(1000 / sampleRate);
-                    Console.WriteLine($"{i}");
+                var m = new Custom(
+                    buffer: buffer,
+                    samplingConfig: sampleRate * Hz
+                );
+                autd.Send(m)
 
-                }
-
-                // ③ 有効なキーが押されるまで繰り返し待ち
+                Thread.Sleep(10000);
                 autd.Send(new Silencer());
                 Console.WriteLine("一個前の波と同じ:s 異なる:d / 終了:enter");
 
+                // ③ 有効なキーが押されるまで繰り返し待ち
                 while (true)
                 {
                     var key = Console.ReadKey(true).Key;

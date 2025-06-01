@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# SAI
-=======
 # autd3sharp
 
 

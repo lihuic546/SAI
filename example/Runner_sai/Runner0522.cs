@@ -31,14 +31,13 @@ namespace Runner_sai
         }
     }
 
-    // 整数の最大公約数をユークリッドの互除法で計算
-    static int Gcd(int a, int b)
-    {
-        return b == 0 ? a : Gcd(b, a % b);
-    }
-
     public static class Runner0522
     {
+        // 整数の最大公約数をユークリッドの互除法で計算
+        static int Gcd(int a, int b)
+        {
+            return b == 0 ? a : Gcd(b, a % b);
+        }
         public static void Run(Controller autd)
         {
             // 無音状態の初期化
@@ -56,7 +55,7 @@ namespace Runner_sai
             autd.Send(m);
             Thread.Sleep(5000);
             autd.Send(new Silencer());
-            
+
             while (true)
             {
                 // ① 周波数をランダム取得->波形作成
@@ -64,7 +63,7 @@ namespace Runner_sai
                 Console.WriteLine($"→ carrier={cFreq}Hz, envelope={eFreq}Hz");
 
                 const int sampleRate = 6000; // サンプリング周波数 
-                int sample = Gcd(cFreq, eFreq);  // carrier と envelope の最大公約数
+                int gcd = Gcd(cFreq, eFreq);  // carrier と envelope の最大公約数
                 int periodSamples = sampleRate / gcd; // 波形周期: 1/gcd(s) * sampleRate(data/s)
 
                 var buffer = new byte[periodSamples];
@@ -81,11 +80,11 @@ namespace Runner_sai
                 }
 
                 // ② 波形送信(10s)
-                var m = new Custom(
+                var wave = new Custom(
                     buffer: buffer,
                     samplingConfig: sampleRate * Hz
                 );
-                autd.Send(m)
+                autd.Send(wave);
 
                 Thread.Sleep(10000);
                 autd.Send(new Silencer());

@@ -13,6 +13,9 @@ namespace TwinCAT_sai
     {
         static void Main(string[] args)
         {
+            // System.Environment.SetEnvironmentVariable("RUST_LOG", "autd3=DEBUG");
+            // AUTD3Sharp.Tracing.Init();
+            
             AUTD3[] devices = new AUTD3[]
             {
                 // 1列目

@@ -17,7 +17,7 @@ namespace Runner_sai
         public static (int carrierFreq, int envelopeFreq) NextFreqPair()
         {
             int[] carrierList  = { 10, 30, 200 };
-            int[] envelopeList = { 3, 5, 10 };
+            int[] envelopeList = { 2, 5, 10 };
 
             int i1, i2;
             do
@@ -62,7 +62,7 @@ namespace Runner_sai
                 var (cFreq, eFreq) = RandomUtil.NextFreqPair();
                 Console.WriteLine($"→ carrier={cFreq}Hz, envelope={eFreq}Hz");
 
-                const int sampleRate = 6000; // サンプリング周波数 
+                const int sampleRate = 1000; // サンプリング周波数 
                 int gcd = Gcd(cFreq, eFreq);  // carrier と envelope の最大公約数
                 int periodSamples = sampleRate / gcd; // 波形周期: 1/gcd(s) * sampleRate(data/s)
 
@@ -82,7 +82,7 @@ namespace Runner_sai
                 // ② 波形送信(10s)
                 var wave = new AUTD3Sharp.Modulation.Custom(
                     buffer: buffer,
-                    samplingConfig: 6000f * Hz
+                    samplingConfig: 1000f * Hz
                 );
                 autd.Send(wave);
 

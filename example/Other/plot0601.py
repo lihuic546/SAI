@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 fs = 2000
 x = np.linspace(0, 1, fs, endpoint=False)
 
-for f1 in {3, 5, 10}:
-    for f2 in {10, 30, 200}:
-        if f1 != f2:
+for f1 in {2, 5, 10}:
+    for f2 in {10, 40, 200}:
+        # if f1 != f2:
             envelope = np.sin(2 * np.pi * f1 * x)
             carrier = np.sin(2 * np.pi * f2 * x)
             y = envelope * carrier

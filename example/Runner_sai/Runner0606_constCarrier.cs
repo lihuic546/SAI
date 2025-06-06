@@ -11,7 +11,7 @@ using static AUTD3Sharp.Units;
 
 namespace Runner_sai
 {
-    public static class Runner0601
+    public static class Runner0606_constCarrier
     {
         // 整数の最大公約数をユークリッドの互除法で計算
         static int Gcd(int a, int b)
@@ -32,19 +32,28 @@ namespace Runner_sai
             // 焦点位置確認用
             var m = new Sine(freq: 30 * Hz, option: new SineOption());
             autd.Send((m, focus));
-            Thread.Sleep(150000);
+            Thread.Sleep(10000);
             autd.Send((new Silencer(), new Null()));
             Thread.Sleep(3000);
 
-            int[] carrierList = { 10, 40, 200 };
-            int[] envelopeList = { 2, 5, 10 };
+            int[] carrierList = { 10, 30, 200 };
+            int[] envelopeList = { 3, 6, 10 };
 
+            
             foreach (int cFreq in carrierList)
             {
                 foreach (int eFreq in envelopeList)
                 {
+                    Console.WriteLine($"→carrier={cFreq}Hz");
+
+                    var sin_wave = new Sine(freq: eFreq * Hz, option: new SineOption());
+                    autd.Send((sin_wave, focus));
+                    Thread.Sleep(5000);
+                    autd.Send((new Silencer(), new Null()));
+                    
                     Console.WriteLine($"→ carrier={cFreq}Hz, envelope={eFreq}Hz");
 
+                    // ① 波形生成
                     const int sampleRate = 1000; // サンプリング周波数 
                     int gcd = Gcd(cFreq, eFreq);  // carrier と envelope の最大公約数
                     int periodSamples = sampleRate / gcd; // 波形周期: 1/gcd(s) * sampleRate(data/s)
@@ -69,10 +78,10 @@ namespace Runner_sai
                     );
                     autd.Send((wave, focus));
 
-                    Thread.Sleep(10000);
+                    Thread.Sleep(5000);
                     autd.Send((new Silencer(), new Null()));
                     Console.WriteLine("一個前の波と同じ:s 異なる:d / 終了:enter");
-                
+
                     // ③ 有効なキーが押されるまで繰り返し待ち
                     while (true)
                     {
@@ -88,7 +97,7 @@ namespace Runner_sai
                             Console.WriteLine($"{key}");
                             break;
                         }
-                        Console.WriteLine("無効なキーです。Enter または D/S を押してください");
+                        Console.WriteLine("無効なキーです。Enter または d/s を押してください");
                     }
 
                 }

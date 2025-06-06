@@ -30,27 +30,27 @@ namespace Runner_sai
             );
 
             // 焦点位置確認用
-            var m = new Sine(freq: 150 * Hz, option: new SineOption());
+            var m = new Sine(freq: 30 * Hz, option: new SineOption());
             autd.Send((m, focus));
-            Thread.Sleep(15000);
+            Thread.Sleep(10000);
             autd.Send((new Silencer(), new Null()));
             Thread.Sleep(3000);
 
             // int[] carrierList = {  };
-            int[] envelopeList = { 6 };
+            int[] envelopeList = { 6, 10 };
 
             
             foreach (int eFreq in envelopeList)
             {
-                Console.WriteLine($"→envelope={eFreq}Hz");
-
-                var m = new Sine(freq: 150 * Hz, option: new SineOption());
-                autd.Send((m, focus));
-                Thread.Sleep(10000);
-                autd.Send((new Silencer(), new Null()));
-
-                for (int cFreq = 10; cFreq < 201; cFreq += 10)
+                for (int cFreq = 10; cFreq < 200; cFreq += 20)
                 {
+                    Console.WriteLine($"→envelope={eFreq}Hz");
+
+                    var sin_wave = new Sine(freq: eFreq * Hz, option: new SineOption());
+                    autd.Send((sin_wave, focus));
+                    Thread.Sleep(5000);
+                    autd.Send((new Silencer(), new Null()));
+                    
                     Console.WriteLine($"→ carrier={cFreq}Hz, envelope={eFreq}Hz");
 
                     // ① 波形生成
@@ -78,7 +78,7 @@ namespace Runner_sai
                     );
                     autd.Send((wave, focus));
 
-                    Thread.Sleep(10000);
+                    Thread.Sleep(5000);
                     autd.Send((new Silencer(), new Null()));
                     Console.WriteLine("一個前の波と同じ:s 異なる:d / 終了:enter");
 

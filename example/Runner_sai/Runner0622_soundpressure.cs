@@ -65,15 +65,18 @@ namespace Runner_sai
             autd.Send(new Silencer());
 
             // 焦点位置設定
+            var focusPosition = autd.Center() + new Vector3(0, 0, 150);
             var focus = new Focus(
-                pos: autd.Center() + new Vector3(0, 0, 2 * AUTD3.DeviceWidth),
+                pos: focusPosition,
                 option: new FocusOption()
             );
+            Console.WriteLine($"width={AUTD3.DeviceWidth}, height={AUTD3.DeviceHeight}");
+            Console.WriteLine($"{focusPosition.X}, {focusPosition.Y}, {focusPosition.Z}");
 
             // 焦点位置確認用
-            var m = new Sine(freq: 30 * Hz, option: new SineOption());
+            var m = new Sine(freq: 150 * Hz, option: new SineOption());
             autd.Send((m, focus));
-            Thread.Sleep(5000);
+            Thread.Sleep(10000);
             autd.Send((new Silencer(), new Null()));
             Thread.Sleep(2000);
 
@@ -129,6 +132,7 @@ namespace Runner_sai
                     Thread.Sleep(1000);
 
                     // ランダムに波形AまたはBを選択
+                    var random = new Random();
                     bool isWaveA = random.Next(2) == 0;
                     var testWave = isWaveA ? modulationA : modulationB;
                     string correctAnswer = isWaveA ? "A" : "B";
@@ -146,7 +150,8 @@ namespace Runner_sai
                         var key = Console.ReadKey(true).Key;
                         if (key == ConsoleKey.Enter)
                         {
-                            Console.WriteLine("実験を終了します");
+                            Console.WriteLine($"\n=== 実験完了 ===");
+                            Console.WriteLine($"最終正答率: {correctAnswers}/{totalTrials} ({(double)correctAnswers/totalTrials*100:F1}%)");
                             autd.Close();
                             return;
                         }
@@ -168,10 +173,6 @@ namespace Runner_sai
                     Thread.Sleep(2000); // 次の試行まで間隔
                 }
             }
-
-            Console.WriteLine($"\n=== 実験完了 ===");
-            Console.WriteLine($"最終正答率: {correctAnswers}/{totalTrials} ({(double)correctAnswers/totalTrials*100:F1}%)");
-            autd.Close();
         }
     }
 }

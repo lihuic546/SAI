@@ -4,8 +4,8 @@ using System.Linq;
 using AUTD3Sharp;
 using AUTD3Sharp.Utils;       // ← Point3, Quaternion, EulerAngles をここから
 using AUTD3Sharp.Link;
-using Runner_sai;
 using static AUTD3Sharp.Units; // rad, Hz など
+using Runner_sai;
 
 namespace TwinCAT_sai
 {
@@ -66,7 +66,7 @@ namespace TwinCAT_sai
             using var autd = Controller.Open(devices, new TwinCAT());
 
             // Runner で一連のデモを実行
-            Runner0606_constCarrier.Run(autd);
+            Runner0622_soundpressure.Run(autd);
         }
     }
 }

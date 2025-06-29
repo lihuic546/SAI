@@ -11,26 +11,6 @@ using static AUTD3Sharp.Units;
 
 namespace Runner_sai
 {
-    public static class RandomUtil
-    {
-        private static readonly Random _rng = new Random();
-        public static (int A_carrier_Freq, int B_carrier_Freq) NextFreqPair()
-        {
-            int[] A_carrier_List = {0, 18, 30, 60, 120, 200};
-            int[] B_carrier_List = {0, 18, 30, 60, 120, 200};
-
-            int i1, i2;
-            do
-            {
-                i1 = _rng.Next(A_carrier_List.Length);
-                i2 = _rng.Next(B_carrier_List.Length);
-            }
-            while (i1 == i2);
-
-            return (A_carrier_List[i1], B_carrier_List[i2]);
-        }
-    }
-    
     public static class Runner0622_soundpressure
     {
         // 整数の最大公約数をユークリッドの互除法で計算

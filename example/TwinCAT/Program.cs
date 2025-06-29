@@ -1,36 +1,55 @@
-﻿using AUTD3Sharp.Utils;
+﻿using System;
+using System.Linq;
 using AUTD3Sharp;
+using AUTD3Sharp.Utils;
 using AUTD3Sharp.Link;
+using static AUTD3Sharp.Units; // rad, Hz など
 using Samples;
 
 AUTD3[] devices = new AUTD3[]
 {
-    // 1列目
-    new AUTD3(new Point3(  AUTD3.DeviceWidth,  AUTD3.DeviceHeight * 3/2,  0), Quaternion.Identity),
-    new AUTD3(new Point3(  0,                   AUTD3.DeviceHeight * 3/2,  0), Quaternion.Identity),
-    new AUTD3(new Point3(- AUTD3.DeviceWidth,   AUTD3.DeviceHeight * 3/2,  0), Quaternion.Identity),
-    new AUTD3(new Point3(-(1 + MathF.Sqrt(2)/2) * AUTD3.DeviceWidth,
-                        AUTD3.DeviceHeight * 3/2,
-                        -MathF.Sqrt(2)/2 * AUTD3.DeviceWidth),
-            Quaternion.Identity),
+        // 1~4
+        new AUTD3(
+                pos: new Point3(-AUTD3.DeviceWidth, 0, 2 * AUTD3.DeviceWidth),
+                rot: EulerAngles.Zyz(0 * rad, MathF.PI / 2 * rad, 0 * rad)),
+        new AUTD3(
+                pos: new Point3(-AUTD3.DeviceWidth, -AUTD3.DeviceHeight, 2 * AUTD3.DeviceWidth),
+                rot: EulerAngles.Zyz(0 * rad, MathF.PI / 2 * rad, 0 * rad)),
+        new AUTD3(
+                pos: new Point3(-AUTD3.DeviceWidth, -AUTD3.DeviceHeight, AUTD3.DeviceWidth),
+                rot: EulerAngles.Zyz(0 * rad, MathF.PI / 2 * rad, 0 * rad)),
+        new AUTD3(
+                pos: new Point3(-AUTD3.DeviceWidth, 0, AUTD3.DeviceWidth),
+                rot: EulerAngles.Zyz(0 * rad, MathF.PI / 2 * rad, 0 * rad)),
+        
 
-    // 2列目
-    new AUTD3(new Point3(-(1 + MathF.Sqrt(2)/2) * AUTD3.DeviceWidth,
-                        AUTD3.DeviceHeight *   1/2,
-                        -MathF.Sqrt(2)/2 * AUTD3.DeviceWidth),
-            Quaternion.Identity),
-    new AUTD3(new Point3(- AUTD3.DeviceWidth,   AUTD3.DeviceHeight *   1/2,  0), Quaternion.Identity),
-    new AUTD3(new Point3(  0,                   AUTD3.DeviceHeight *   1/2,  0), Quaternion.Identity),
-    new AUTD3(new Point3(  AUTD3.DeviceWidth,   AUTD3.DeviceHeight *   1/2,  0), Quaternion.Identity),
-
-    // 3列目
-    new AUTD3(new Point3(  AUTD3.DeviceWidth,  -AUTD3.DeviceHeight *   1/2,  0), Quaternion.Identity),
-    new AUTD3(new Point3(  0,                -AUTD3.DeviceHeight *   1/2,  0), Quaternion.Identity),
-    new AUTD3(new Point3(- AUTD3.DeviceWidth, -AUTD3.DeviceHeight *   1/2,  0), Quaternion.Identity),
-    new AUTD3(new Point3(-(1 + MathF.Sqrt(2)/2) * AUTD3.DeviceWidth,
-                        -AUTD3.DeviceHeight *   1/2,
-                        -MathF.Sqrt(2)/2 * AUTD3.DeviceWidth),
-            Quaternion.Identity),
+        // 5~8
+        new AUTD3(
+                pos: new Point3(-AUTD3.DeviceWidth, 0, 0),
+                rot: Quaternion.Identity),
+        new AUTD3(
+                pos: new Point3(-AUTD3.DeviceWidth, -AUTD3.DeviceHeight, 0),
+                rot: Quaternion.Identity),
+        new AUTD3(
+                pos: new Point3(0, -AUTD3.DeviceHeight, 0),
+                rot: Quaternion.Identity),
+        new AUTD3(
+                pos: Point3.Origin,
+                rot: Quaternion.Identity),
+        
+        // 9~12
+        new AUTD3(
+                pos: new Point3(AUTD3.DeviceWidth, 0, AUTD3.DeviceWidth),
+                rot: EulerAngles.Zyz(0 * rad, - MathF.PI / 2 * rad, 0 * rad)),
+        new AUTD3(
+                pos: new Point3(AUTD3.DeviceWidth, -AUTD3.DeviceHeight, AUTD3.DeviceWidth),
+                rot: EulerAngles.Zyz(0 * rad, - MathF.PI / 2 * rad, 0 * rad)),
+        new AUTD3(
+                pos: new Point3(AUTD3.DeviceWidth, -AUTD3.DeviceHeight, 2 * AUTD3.DeviceWidth),
+                rot: EulerAngles.Zyz(0 * rad, - MathF.PI / 2 * rad, 0 * rad)),
+        new AUTD3(
+                pos: new Point3(AUTD3.DeviceWidth, 0, 2 * AUTD3.DeviceWidth),
+                rot: EulerAngles.Zyz(0 * rad, - MathF.PI / 2 * rad, 0 * rad)),
 };
 
 // TwinCAT 経由でコントローラをオープン

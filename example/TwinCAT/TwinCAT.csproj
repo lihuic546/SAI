@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AUTD3Sharp" Version="32.1.1" />
+    <PackageReference Include="AUTD3Sharp" Version="34.0.0.1" />
     <PackageReference Include="AUTD3Sharp.Link.SOEM" Version="32.1.1" />
   </ItemGroup>
   

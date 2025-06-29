@@ -1,4 +1,6 @@
-// Runner0522.cs
+// carrier={10, 40, 200} * envelope={2, 5, 10}を掛け合わせた波を10秒ずつランダムに送信
+// キー：一個前の波と同じ:s 異なる:d
+
 using System;
 using System.Diagnostics;
 using System.Threading;
@@ -40,6 +42,10 @@ namespace Runner_sai
         }
         public static void Run(Controller autd)
         {
+            // --------------------------------
+            // 　　　　　　　　 準備
+            // --------------------------------
+
             // 無音状態の初期化
             autd.Send(new Silencer());
 
@@ -56,10 +62,15 @@ namespace Runner_sai
             autd.Send((new Silencer(), new Null()));
             Thread.Sleep(3000);
 
+            // --------------------------------
+            // 　　　　　　　　 実験
+            // --------------------------------
+
             while (true)
             {
-                // ① 周波数をランダム取得->波形作成
                 var (cFreq, eFreq) = RandomUtil.NextFreqPair();
+
+                // ① 周波数->波形作成
                 Console.WriteLine($"→ carrier={cFreq}Hz, envelope={eFreq}Hz");
 
                 const int sampleRate = 1000; // サンプリング周波数 

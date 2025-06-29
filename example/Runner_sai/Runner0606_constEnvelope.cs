@@ -1,4 +1,6 @@
-// Runner0522.cs
+// envelope={2, 5, 10}固定
+// "carrier:なしの波 10秒 → carrier:fHzの波 10秒"を順番に送信
+// キー：一個前の波と同じ:s 異なる:d
 using System;
 using System.Diagnostics;
 using System.Threading;
@@ -20,6 +22,10 @@ namespace Runner_sai
         }
         public static void Run(Controller autd)
         {
+            // --------------------------------
+            // 　　　　　　　　 準備
+            // --------------------------------
+
             // 無音状態の初期化
             autd.Send(new Silencer());
 
@@ -36,24 +42,37 @@ namespace Runner_sai
             autd.Send((new Silencer(), new Null()));
             Thread.Sleep(3000);
 
-            // int[] carrierList = {  };
-            int[] envelopeList = { 6, 10 };
+            // --------------------------------
+            // 　　　　　　　　 実験
+            // --------------------------------
 
-            
+            int[] carrierList = { 10, 40, 200 };
+            int[] envelopeList = { 2, 5, 10 };
+
             foreach (int eFreq in envelopeList)
             {
                 for (int cFreq = 10; cFreq < 200; cFreq += 20)
                 {
-                    Console.WriteLine($"→envelope={eFreq}Hz");
+                    // ----------
+                    // no carrier
+                    // ----------
 
+                    // ① 周波数->波形作成
+                    Console.WriteLine($"→envelope={eFreq}Hz");
                     var sin_wave = new Sine(freq: eFreq * Hz, option: new SineOption());
+                    
+                    // ② 波形送信(10s)
                     autd.Send((sin_wave, focus));
                     Thread.Sleep(5000);
                     autd.Send((new Silencer(), new Null()));
-                    
+                
+                    // ------------
+                    // with carrier
+                    // ------------
+
+                    // ① 周波数->波形作成
                     Console.WriteLine($"→ carrier={cFreq}Hz, envelope={eFreq}Hz");
 
-                    // ① 波形生成
                     const int sampleRate = 1000; // サンプリング周波数 
                     int gcd = Gcd(cFreq, eFreq);  // carrier と envelope の最大公約数
                     int periodSamples = sampleRate / gcd; // 波形周期: 1/gcd(s) * sampleRate(data/s)
@@ -82,6 +101,8 @@ namespace Runner_sai
                     autd.Send((new Silencer(), new Null()));
                     Console.WriteLine("一個前の波と同じ:s 異なる:d / 終了:enter");
 
+                    // --------------
+                    
                     // ③ 有効なキーが押されるまで繰り返し待ち
                     while (true)
                     {

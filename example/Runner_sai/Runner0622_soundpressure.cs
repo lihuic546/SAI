@@ -11,6 +11,26 @@ using static AUTD3Sharp.Units;
 
 namespace Runner_sai
 {
+    public static class RandomUtil
+    {
+        private static readonly Random _rng = new Random();
+        public static (int A_carrier_Freq, int B_carrier_Freq) NextFreqPair()
+        {
+            int[] A_carrier_List = {0, 18, 30, 60, 120, 200};
+            int[] B_carrier_List = {0, 18, 30, 60, 120, 200};
+
+            int i1, i2;
+            do
+            {
+                i1 = _rng.Next(A_carrier_List.Length);
+                i2 = _rng.Next(B_carrier_List.Length);
+            }
+            while (i1 == i2);
+
+            return (A_carrier_List[i1], B_carrier_List[i2]);
+        }
+    }
+    
     public static class Runner0622_soundpressure
     {
         // 整数の最大公約数をユークリッドの互除法で計算
@@ -30,27 +50,24 @@ namespace Runner_sai
             {
                 double t = i / (double)sampleRate;
 
-                // envelope波形（0~1の範囲）
                 double envelope = (1 + Math.Sin(2 * Math.PI * envelopeFreq * t)) / 2;
 
+                // 振動圧
                 double vibrationPressure;
                 if (carrierFreq == 0)
                 {
-                    // carrierなしの場合
                     vibrationPressure = envelope;
                 }
                 else
                 {
-                    // carrier波形（0~1の範囲）
                     double carrier = (1 + Math.Sin(2 * Math.PI * carrierFreq * t)) / 2;
-                    // 振動圧（envelope × carrier）
                     vibrationPressure = envelope * carrier;
                 }
 
-                // 音圧（振動圧の平方根）
+                // 音圧: √振動圧
                 double soundPressure = Math.Sqrt(Math.Abs(vibrationPressure));
 
-                // 0-255の範囲に変換
+                // 音圧を0-255の範囲に変換
                 int intLevel = (int)Math.Round(soundPressure * 255.0);
                 buffer[i] = (byte)intLevel;
             }
@@ -60,12 +77,16 @@ namespace Runner_sai
 
         public static void Run(Controller autd)
         {
+            // --------------------------------
+            // 　　　　　　　　 準備
+            // --------------------------------
+
             // 無音状態の初期化
             autd.Send(new Silencer());
 
             // 焦点位置設定
             var focus = new Focus(
-                pos: autd.Center() + new Vector3(0, 0, 150),
+                pos: autd.Center() + new Vector3(0, 0, 2 * AUTD3.DeviceWidth),
                 option: new FocusOption()
             );
 
@@ -76,37 +97,33 @@ namespace Runner_sai
             autd.Send((new Silencer(), new Null()));
             Thread.Sleep(2000);
 
+            // --------------------------------
+            // 　　　　　　　　 実験
+            // --------------------------------
+
             Console.WriteLine("=== 音圧波形識別実験開始 ===");
             Console.WriteLine("波形A → 波形B → ランダム波形 → キー入力");
             Console.WriteLine("Aと同じ: ← キー, Bと同じ: → キー, 終了: Enter");
 
             // 実験設定
             int envelopeFreq = 6; // Hz
-            var waveformPairs = new[]
-            {
-                new { A_carrier = 0, B_carrier = 30, name = "A:no carrier vs B:30Hz" },
-                new { A_carrier = 12, B_carrier = 60, name = "A:12Hz vs B:60Hz" },
-                new { A_carrier = 18, B_carrier = 120, name = "A:18Hz vs B:120Hz" },
-                new { A_carrier = 30, B_carrier = 180, name = "A:30Hz vs B:180Hz" }
-            };
-
-            var random = new Random();
             int totalTrials = 0;
             int correctAnswers = 0;
 
-            foreach (var pair in waveformPairs)
+            while (true)
             {
-                Console.WriteLine($"\n--- {pair.name} ---");
+                var (A_carrier_Freq, B_carrier_Freq) = RandomUtil.NextFreqPair();
+                Console.WriteLine($"\n--- A: {A_carrier_Freq} B: {B_carrier_Freq} ---");
 
                 // 波形A生成
-                var waveA = GenerateSoundPressureWave(envelopeFreq, pair.A_carrier);
+                var waveA = GenerateSoundPressureWave(envelopeFreq, A_carrier_Freq);
                 var modulationA = new AUTD3Sharp.Modulation.Custom(
                     buffer: waveA,
                     samplingConfig: 1000f * Hz
                 );
 
                 // 波形B生成
-                var waveB = GenerateSoundPressureWave(envelopeFreq, pair.B_carrier);
+                var waveB = GenerateSoundPressureWave(envelopeFreq, B_carrier_Freq);
                 var modulationB = new AUTD3Sharp.Modulation.Custom(
                     buffer: waveB,
                     samplingConfig: 1000f * Hz

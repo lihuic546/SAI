@@ -44,7 +44,7 @@ namespace TwinCAT_sai
                         pos: new Point3(0, -AUTD3.DeviceHeight, 0),
                         rot: Quaternion.Identity),
                 new AUTD3(
-                        pos: new Point3.Origin,
+                        pos: Point3.Origin,
                         rot: Quaternion.Identity),
                 
                 // 9~12

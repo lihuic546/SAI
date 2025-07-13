@@ -107,7 +107,7 @@ namespace Runner_sai
 
             while (true)
             {
-                var (A_carrier_Freq, B_carrier_Freq) = RandomUtil.NextFreqPair();
+                var (A_carrier_Freq, B_carrier_Freq) = RandomUtil.NextFreqPair0622();
                 Console.WriteLine($"\n--- A: {A_carrier_Freq} B: {B_carrier_Freq} ---");
 
                 // 波形A生成
@@ -143,14 +143,15 @@ namespace Runner_sai
                         playedWaves[waveIndex] = isWaveA ? "A" : "B";
 
                         // ランダムな振幅スケール (0.1 ~ 1.0, 0.1刻み)
-                        double amplitudeScale = (random.Next(1, 11)) * 0.1; // 0.1, 0.2, ..., 1.0
+                        double amplitudeScale = (random.Next(5, 11)) * 0.1; // 0.1, 0.2, ..., 1.0
                         amplitudeScales[waveIndex] = amplitudeScale;
                         
                         // 振幅スケールを適用した新しい波形を生成
+                        // 振動圧をamplitudeScale倍 → 音圧は√amplitudeScale倍
                         var scaledWave = new byte[baseWave.Length];
                         for (int i = 0; i < baseWave.Length; i++)
                         {
-                            scaledWave[i] = (byte)(baseWave[i] * amplitudeScale);
+                            scaledWave[i] = (byte)(baseWave[i] * Math.Sqrt(amplitudeScale));
                         }
                         
                         var testWave = new AUTD3Sharp.Modulation.Custom(

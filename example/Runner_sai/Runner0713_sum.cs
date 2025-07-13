@@ -127,9 +127,7 @@ namespace Runner_sai
             while (true)
             {
                 // 周波数ペアを生成（例：2Hz, 7Hz）
-                int freq1 = 2 + random.Next(8);  // 2-9Hz
-                int freq2 = freq1 + 3 + random.Next(5);  // freq1より3-7Hz高い
-                
+                var (freq1, freq2) = RandomUtil.NextFreqPair0713();
                 Console.WriteLine($"\n--- 試行 {totalTrials + 1}: {freq1}Hz + {freq2}Hz ---");
 
                 // freq1単体の波形生成・再生

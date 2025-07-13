@@ -14,39 +14,39 @@ namespace Runner_sai
     {
         private static readonly Random _rng = new Random();
 
-        // public static (int carrierFreq, int envelopeFreq) NextFreqPair()
-        // {
-        //     int[] carrierList  = { 10, 40, 200 };
-        //     int[] envelopeList = { 2, 5, 10 };
+        public static (int carrierFreq, int envelopeFreq) NextFreqPair0522()
+        {
+            int[] carrierList  = { 10, 40, 200 };
+            int[] envelopeList = { 2, 5, 10 };
 
-        //     int i1, i2;
-        //     do
-        //     {
-        //         i1 = _rng.Next(carrierList.Length);
-        //         i2 = _rng.Next(envelopeList.Length);
-        //     }
-        //     while (carrierList[i1] == envelopeList[i2]);
+            int i1, i2;
+            do
+            {
+                i1 = _rng.Next(carrierList.Length);
+                i2 = _rng.Next(envelopeList.Length);
+            }
+            while (carrierList[i1] == envelopeList[i2]);
 
-        //     return (carrierList[i1], envelopeList[i2]);
-        // }
+            return (carrierList[i1], envelopeList[i2]);
+        }
 
-        // public static (int A_carrier_Freq, int B_carrier_Freq) NextFreqPair()
-        // {
-        //     int[] A_carrier_List = {0, 18, 30, 60, 120, 200};
-        //     int[] B_carrier_List = {0, 18, 30, 60, 120, 200};
+        public static (int A_carrier_Freq, int B_carrier_Freq) NextFreqPairo0622()
+        {
+            int[] A_carrier_List = {0, 18, 30, 60, 120, 200};
+            int[] B_carrier_List = {0, 18, 30, 60, 120, 200};
 
-        //     int i1, i2;
-        //     do
-        //     {
-        //         i1 = _rng.Next(A_carrier_List.Length);
-        //         i2 = _rng.Next(B_carrier_List.Length);
-        //     }
-        //     while (i1 == i2);
+            int i1, i2;
+            do
+            {
+                i1 = _rng.Next(A_carrier_List.Length);
+                i2 = _rng.Next(B_carrier_List.Length);
+            }
+            while (i1 == i2);
 
-        //     return (A_carrier_List[i1], B_carrier_List[i2]);
-        // }
+            return (A_carrier_List[i1], B_carrier_List[i2]);
+        }
 
-        public static (int A_carrier_Freq, int B_carrier_Freq) NextFreqPair()
+        public static (int A_carrier_Freq, int B_carrier_Freq) NextFreqPair0713()
         {
             int[] A_carrier_List = {1, 2, 3, 4, 5, 6, 7, 8, 9};
             int[] B_carrier_List = {1, 2, 3, 4, 5, 6, 7, 8, 9};

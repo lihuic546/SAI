@@ -48,7 +48,7 @@ namespace Runner_sai
 
             while (true)
             {
-                var (cFreq, eFreq) = RandomUtil.NextFreqPair();
+                var (cFreq, eFreq) = RandomUtil.NextFreqPair0522();
 
                 // ① 周波数->波形作成
                 Console.WriteLine($"→ carrier={cFreq}Hz, envelope={eFreq}Hz");

@@ -68,10 +68,9 @@ namespace TwinCAT_sai
                         pos: new Point3(WidthOriginToOscillatorEdge + width_x_right, 0, width_z_right + OscillatorRadius + AUTD3.DeviceWidth),
                         rot: EulerAngles.Zyz(0 * rad, - MathF.PI / 2 * rad, 0 * rad)),
             };
-            Console.WriteLine($"width={AUTD3.DeviceWidth}, 変数={WidthOriginToOscillatorEdge}");
-
+            
             // TwinCAT 経由でコントローラをオープン
-            using var autd = Controller.Open(devices, new TwinCAT());
+                        using var autd = Controller.Open(devices, new TwinCAT());
 
             // Runner で一連のデモを実行
             Runner0622_soundpressure.Run(autd);

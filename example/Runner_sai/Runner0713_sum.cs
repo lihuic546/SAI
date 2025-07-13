@@ -89,7 +89,7 @@ namespace Runner_sai
             // 焦点位置確認用
             var m = new Sine(freq: 150 * Hz, option: new SineOption());
             autd.Send((m, focus));
-            Thread.Sleep(3000);
+            Thread.Sleep(10000);
             autd.Send((new Silencer(), new Null()));
             Thread.Sleep(2000);
 

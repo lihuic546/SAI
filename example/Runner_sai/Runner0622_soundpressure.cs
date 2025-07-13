@@ -127,7 +127,7 @@ namespace Runner_sai
                 var random = new Random();
 
                 // 10回の試行セット
-                for (int trialSet = 1; trialSet <= 10; trialSet++)
+                for (int trialSet = 1; trialSet <= 4; trialSet++)
                 {
                     Console.WriteLine($"\n試行セット {trialSet}/10:");
                     
@@ -143,7 +143,8 @@ namespace Runner_sai
                         playedWaves[waveIndex] = isWaveA ? "A" : "B";
 
                         // ランダムな振幅スケール (0.1 ~ 1.0, 0.1刻み)
-                        double amplitudeScale = (random.Next(5, 11)) * 0.1; // 0.1, 0.2, ..., 1.0
+                        // double amplitudeScale = (random.Next(5, 11)) * 0.1; // 0.1, 0.2, ..., 1.0
+                        double amplitudeScale = 1.0;
                         amplitudeScales[waveIndex] = amplitudeScale;
                         
                         // 振幅スケールを適用した新しい波形を生成
@@ -161,7 +162,7 @@ namespace Runner_sai
 
                         Console.WriteLine($"波形{waveIndex + 1}再生中... ({playedWaves[waveIndex]}, 振幅: {amplitudeScale:F2})");
                         autd.Send((testWave, focus));
-                        Thread.Sleep(2500);
+                        Thread.Sleep(1500);
                         autd.Send((new Silencer(), new Null()));
                         Thread.Sleep(500);
                     }

@@ -1,3 +1,2 @@
 dotnet add package AUTD3Sharp
-dotnet add package AUTD3Sharp.Link.SOEM
 dotnet run -c:Release

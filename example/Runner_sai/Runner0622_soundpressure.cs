@@ -97,7 +97,7 @@ namespace Runner_sai
             Directory.CreateDirectory(resultDir);
             using (var writer = new StreamWriter(csvPath, false, System.Text.Encoding.UTF8))
             {
-                writer.WriteLine("Timestamp,EnvelopeFreq,A_CarrierFreq,B_CarrierFreq,TrialSet,Wave1,Wave2,Wave3,UserAnswer,ResponseTime_ms");
+                writer.WriteLine("Timestamp,EnvelopeFreq,A_CarrierFreq,B_CarrierFreq,TrialSet,Wave1,Wave2,Wave3,Wave1_Amplitude,Wave2_Amplitude,Wave3_Amplitude,UserAnswer,ResponseTime_ms");
             }
             Console.WriteLine($"実験結果は {csvFileName} に保存されます");
 
@@ -132,16 +132,33 @@ namespace Runner_sai
                     Console.WriteLine($"\n試行セット {trialSet}/10:");
                     
                     string[] playedWaves = new string[3];
+                    double[] amplitudeScales = new double[3];
 
                     // 3回のランダム波形再生
                     for (int waveIndex = 0; waveIndex < 3; waveIndex++) 
                     {
                         // ランダムに波形AまたはBを選択
                         bool isWaveA = random.Next(2) == 0;
-                        var testWave = isWaveA ? modulationA : modulationB;
+                        var baseWave = isWaveA ? waveA : waveB;
                         playedWaves[waveIndex] = isWaveA ? "A" : "B";
 
-                        Console.WriteLine($"波形{waveIndex + 1}再生中... ({playedWaves[waveIndex]})");
+                        // ランダムな振幅スケール (0.1 ~ 1.0, 0.1刻み)
+                        double amplitudeScale = (random.Next(1, 11)) * 0.1; // 0.1, 0.2, ..., 1.0
+                        amplitudeScales[waveIndex] = amplitudeScale;
+                        
+                        // 振幅スケールを適用した新しい波形を生成
+                        var scaledWave = new byte[baseWave.Length];
+                        for (int i = 0; i < baseWave.Length; i++)
+                        {
+                            scaledWave[i] = (byte)(baseWave[i] * amplitudeScale);
+                        }
+                        
+                        var testWave = new AUTD3Sharp.Modulation.Custom(
+                            buffer: scaledWave,
+                            samplingConfig: 1000f * Hz
+                        );
+
+                        Console.WriteLine($"波形{waveIndex + 1}再生中... ({playedWaves[waveIndex]}, 振幅: {amplitudeScale:F2})");
                         autd.Send((testWave, focus));
                         Thread.Sleep(5000);
                         autd.Send((new Silencer(), new Null()));
@@ -178,7 +195,7 @@ namespace Runner_sai
                             using (var writer = new StreamWriter(csvPath, true, System.Text.Encoding.UTF8))
                             {
                                 string currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                                writer.WriteLine($"{currentTime},{envelopeFreq},{A_carrier_Freq},{B_carrier_Freq},{trialSet},{playedWaves[0]},{playedWaves[1]},{playedWaves[2]},{userAnswer},{responseTime}");
+                                writer.WriteLine($"{currentTime},{envelopeFreq},{A_carrier_Freq},{B_carrier_Freq},{trialSet},{playedWaves[0]},{playedWaves[1]},{playedWaves[2]},{amplitudeScales[0]:F3},{amplitudeScales[1]:F3},{amplitudeScales[2]:F3},{userAnswer},{responseTime}");
                             }
 
                             Console.WriteLine($"回答: {userAnswer} (応答時間: {responseTime}ms)");

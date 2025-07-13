@@ -75,6 +75,7 @@ namespace TwinCAT_sai
 
             // Runner で一連のデモを実行
             Runner0622_soundpressure.Run(autd);
+            
         }
     }
 }

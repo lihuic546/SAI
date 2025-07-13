@@ -44,6 +44,6 @@ MultiplyQuaternions(new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, MathF.Sin(Math
 ```
 
 ==========
-1-4番目のデバイス : Z軸-90° * X軸-90
+1-4番目のデバイス : Z軸-90° * X軸-90°
 5-8番目のデバイス : X軸-90°
 9-12番目のデバイス : Z軸+90° * X軸-90°

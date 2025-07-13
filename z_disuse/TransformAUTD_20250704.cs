@@ -5,12 +5,12 @@
 
 private Controller<AUTD3Sharp.Link.TwinCAT>? _autd = null;
 
-private const float OscillatorRadius = 0.00508f; // �U���q�̔��a AUTD�ʒu�ݒ�p
-private const float width_x_right = 0.0004f;  // �������ĉE����AUTD�Ɛ��ʂ�AUTD��AUTD���W�ɂ�����x�������̂���(���ʂ�AUTD��transducer�̒[�ɑ΂���A�E����AUTD��transducer�̖ʂ̈ʒu)(���͐��ʂ�AUTD�ɑ΂���x���������Ɉړ����Ă���)
-private const float width_y_right = 0.0005f;  // �������ĉE����AUTD�Ɛ��ʂ�AUTD��AUTD���W�ɂ�����y�������̂���(���ʂ�AUTD��transducer�̖ʂɑ΂���A�E����AUTD��transducer�̒[�̈ʒu)(���͐��ʂ�AUTD�ɑ΂���y���������Ɉړ����Ă���)
-private const float width_x_left = -0.001f;  // �������č�����AUTD�Ɛ��ʂ�AUTD��AUTD���W�ɂ�����x�������̂���(���ʂ�AUTD��transducer�̒[�ɑ΂���A������AUTD��transducer�̖ʂ̈ʒu)(���͐��ʂ�AUTD�ɑ΂���x���������Ɉړ����Ă���)
-private const float width_y_left = 0.0005f;  // �������č�����AUTD�Ɛ��ʂ�AUTD��AUTD���W�ɂ�����y�������̂���(���ʂ�AUTD��transducer�̖ʂɑ΂���A������AUTD��transducer�̒[�̈ʒu)(���͐��ʂ�AUTD�ɑ΂���y���������Ɉړ����Ă���)
-private const float WidthOriginToOscillatorEdge = 0.1778f; //AUTD�̌��_�ʒu����Awidth����(x��)�ɐi��ŁA��Ԓ[�̃I�V���[�^�[�̒[�܂ł̒���[m]
+private const float OscillatorRadius = 0.00508f; // 振動子の半径 AUTD位置設定用
+private const float width_x_right = 0.0004f;  // 向かって右側のAUTDと正面のAUTDのAUTD座標におけるx軸方向のずれ(正面のAUTDのtransducerの端に対する、右側のAUTDのtransducerの面の位置)(正は正面のAUTDに対してx軸正方向に移動している)
+private const float width_y_right = 0.0005f;  // 向かって右側のAUTDと正面のAUTDのAUTD座標におけるy軸方向のずれ(正面のAUTDのtransducerの面に対する、右側のAUTDのtransducerの端の位置)(正は正面のAUTDに対してy軸正方向に移動している)
+private const float width_x_left = -0.001f;  // 向かって左側のAUTDと正面のAUTDのAUTD座標におけるx軸方向のずれ(正面のAUTDのtransducerの端に対する、左側のAUTDのtransducerの面の位置)(正は正面のAUTDに対してx軸正方向に移動している)
+private const float width_y_left = 0.0005f;  // 向かって左側のAUTDと正面のAUTDのAUTD座標におけるy軸方向のずれ(正面のAUTDのtransducerの面に対する、左側のAUTDのtransducerの端の位置)(正は正面のAUTDに対してy軸正方向に移動している)
+private const float WidthOriginToOscillatorEdge = 0.1778f; //AUTDの原点位置から、width方向(x軸)に進んで、一番端のオシレーターの端までの長さ[m]
 
 UnityEngine.Vector3[] tmp_pos = new UnityEngine.Vector3[]{
             //1-4

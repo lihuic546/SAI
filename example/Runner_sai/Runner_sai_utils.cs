@@ -30,7 +30,7 @@ namespace Runner_sai
             return (carrierList[i1], envelopeList[i2]);
         }
 
-        public static (int A_carrier_Freq, int B_carrier_Freq) NextFreqPairo0622()
+        public static (int A_carrier_Freq, int B_carrier_Freq) NextFreqPair0622()
         {
             int[] A_carrier_List = {0, 18, 30, 60, 120, 200};
             int[] B_carrier_List = {0, 18, 30, 60, 120, 200};

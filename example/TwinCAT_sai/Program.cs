@@ -11,6 +11,17 @@ namespace TwinCAT_sai
 {
     class Program
     {
+        // Quaternion同士の掛け算を実装
+        static Quaternion MultiplyQuaternions(Quaternion q1, Quaternion q2)
+        {
+            return new Quaternion(
+                q1.W * q2.W - q1.X * q2.X - q1.Y * q2.Y - q1.Z * q2.Z,  // W
+                q1.W * q2.X + q1.X * q2.W + q1.Y * q2.Z - q1.Z * q2.Y,  // X
+                q1.W * q2.Y - q1.X * q2.Z + q1.Y * q2.W + q1.Z * q2.X,  // Y
+                q1.W * q2.Z + q1.X * q2.Y - q1.Y * q2.X + q1.Z * q2.W   // Z
+            );
+        }
+
         static void Main(string[] args)
         {
             // System.Environment.SetEnvironmentVariable("RUST_LOG", "autd3=DEBUG");
@@ -29,16 +40,16 @@ namespace TwinCAT_sai
                 // 1~4
                 new AUTD3(
                         pos: new Point3(-AUTD3.DeviceWidth - OscillatorRadius + width_x_left, WidthOriginToOscillatorEdge+AUTD3.DeviceWidth + width_y_left, -AUTD3.DeviceHeight),
-                        rot: new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, -MathF.Sin(MathF.PI / 4)) * new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, -MathF.Sin(MathF.PI / 4))),
+                        rot: MultiplyQuaternions(new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, -MathF.Sin(MathF.PI / 4)), new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0))),
                 new AUTD3(
                         pos: new Point3(-AUTD3.DeviceWidth - OscillatorRadius + width_x_left, WidthOriginToOscillatorEdge+AUTD3.DeviceWidth + width_y_left, 0),
-                        rot: new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, -MathF.Sin(MathF.PI / 4)) * new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, -MathF.Sin(MathF.PI / 4))),
+                        rot: MultiplyQuaternions(new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, -MathF.Sin(MathF.PI / 4)), new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0))),
                 new AUTD3(
                         pos: new Point3(-AUTD3.DeviceWidth - OscillatorRadius + width_x_left, WidthOriginToOscillatorEdge + width_y_left, 0),
-                        rot: new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, -MathF.Sin(MathF.PI / 4)) * new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, -MathF.Sin(MathF.PI / 4))),
+                        rot: MultiplyQuaternions(new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, -MathF.Sin(MathF.PI / 4)), new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0))),
                 new AUTD3(
                         pos: new Point3(-AUTD3.DeviceWidth - OscillatorRadius + width_x_left, WidthOriginToOscillatorEdge + width_y_left, -AUTD3.DeviceHeight),
-                        rot: new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, -MathF.Sin(MathF.PI / 4)) * new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, -MathF.Sin(MathF.PI / 4))),
+                        rot: MultiplyQuaternions(new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, -MathF.Sin(MathF.PI / 4)), new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0))),
                 
 
                 // 5~8
@@ -58,16 +69,16 @@ namespace TwinCAT_sai
                 // 9~12
                 new AUTD3(
                         pos: new Point3(WidthOriginToOscillatorEdge + width_x_right, OscillatorRadius + width_y_right, -AUTD3.DeviceHeight),
-                        rot: new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, MathF.Sin(MathF.PI / 4)) * new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0)),
+                        rot: MultiplyQuaternions(new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, MathF.Sin(MathF.PI / 4)), new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0))),
                 new AUTD3(
                         pos: new Point3(WidthOriginToOscillatorEdge + width_x_right, OscillatorRadius + width_y_right, 0),
-                        rot: new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, MathF.Sin(MathF.PI / 4)) * new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0)),
+                        rot: MultiplyQuaternions(new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, MathF.Sin(MathF.PI / 4)), new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0))),
                 new AUTD3(
                         pos: new Point3(WidthOriginToOscillatorEdge + width_x_right, OscillatorRadius+AUTD3.DeviceWidth + width_y_right, 0),
-                        rot: new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, MathF.Sin(MathF.PI / 4)) * new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0)),
+                        rot: MultiplyQuaternions(new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, MathF.Sin(MathF.PI / 4)), new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0))),
                 new AUTD3(
                         pos: new Point3(WidthOriginToOscillatorEdge + width_x_right, OscillatorRadius+AUTD3.DeviceWidth + width_y_right, -AUTD3.DeviceHeight),
-                        rot: new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, MathF.Sin(MathF.PI / 4)) * new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0)),
+                        rot: MultiplyQuaternions(new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, MathF.Sin(MathF.PI / 4)), new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0))),
             };
 
             // TwinCAT 経由でコントローラをオープン

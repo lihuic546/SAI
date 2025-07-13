@@ -1,0 +1,88 @@
+Quaternion比較分析: TransformAUTD_20250704.cs vs Program.cs
+=======================================================
+
+主な違い:
+========
+
+1. **Quaternionの形式**:
+   - TransformAUTD_20250704.cs: UnityEngine.Quaternion (x, y, z, w)
+   - Program.cs: AUTD3Sharp.Utils.Quaternion (w, x, y, z)
+
+2. **パラメータの順序**:
+   - Unity: new Quaternion(x, y, z, w)
+   - AUTD3Sharp: new Quaternion(w, x, y, z)
+
+具体的な比較:
+============
+
+**TransformAUTD_20250704.cs (Unity形式):**
+```csharp
+// 1-4番目のデバイス
+new UnityEngine.Quaternion(0,0,-MathF.Sin(MathF.PI / 4),MathF.Cos(MathF.PI / 4)) * 
+new UnityEngine.Quaternion(-MathF.Sin(MathF.PI / 4),0,0, MathF.Cos(MathF.PI / 4))
+
+// 5-8番目のデバイス
+new UnityEngine.Quaternion(-MathF.Sin(MathF.PI / 4),0,0, MathF.Cos(MathF.PI / 4))
+
+// 9-12番目のデバイス
+new UnityEngine.Quaternion(0,0,MathF.Sin(MathF.PI / 4),MathF.Cos(MathF.PI / 4)) * 
+new UnityEngine.Quaternion(-MathF.Sin(MathF.PI / 4),0,0, MathF.Cos(MathF.PI / 4))
+```
+
+**Program.cs (AUTD3Sharp形式):**
+```csharp
+// 1-4番目のデバイス
+MultiplyQuaternions(new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, -MathF.Sin(MathF.PI / 4)), 
+                    new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, -MathF.Sin(MathF.PI / 4)))
+
+// 5-8番目のデバイス
+new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0)
+
+// 9-12番目のデバイス
+MultiplyQuaternions(new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, MathF.Sin(MathF.PI / 4)), 
+                    new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0))
+```
+
+変換対応表:
+==========
+
+Unity形式 → AUTD3Sharp形式への変換:
+
+1. **1-4番目のデバイス:**
+   Unity: (0,0,-sin(π/4),cos(π/4)) * (-sin(π/4),0,0,cos(π/4))
+   ↓
+   AUTD3Sharp: (cos(π/4),0,0,-sin(π/4)) * (cos(π/4),0,0,-sin(π/4))
+
+2. **5-8番目のデバイス:**
+   Unity: (-sin(π/4),0,0,cos(π/4))
+   ↓
+   AUTD3Sharp: (cos(π/4),-sin(π/4),0,0)
+
+3. **9-12番目のデバイス:**
+   Unity: (0,0,sin(π/4),cos(π/4)) * (-sin(π/4),0,0,cos(π/4))
+   ↓
+   AUTD3Sharp: (cos(π/4),0,0,sin(π/4)) * (cos(π/4),-sin(π/4),0,0)
+
+問題の原因:
+==========
+
+Program.csのQuaternionが間違っている理由:
+1. **1-4番目**: 同じクォータニオンを2回掛けている (本来は異なる回転の合成)
+2. **9-12番目**: 回転の順序が逆になっている可能性
+
+正しい修正案:
+============
+
+Program.csを以下のように修正すべき:
+
+```csharp
+// 1-4番目のデバイス (Z軸-90° * X軸-90°)
+MultiplyQuaternions(new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, -MathF.Sin(MathF.PI / 4)), 
+                    new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0))
+
+// 9-12番目のデバイス (Z軸+90° * X軸-90°)
+MultiplyQuaternions(new Quaternion(MathF.Cos(MathF.PI / 4), 0, 0, MathF.Sin(MathF.PI / 4)), 
+                    new Quaternion(MathF.Cos(MathF.PI / 4), -MathF.Sin(MathF.PI / 4), 0, 0))
+```
+
+これでTransformAUTD_20250704.csと同じ回転になります。

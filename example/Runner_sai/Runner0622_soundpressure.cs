@@ -161,21 +161,45 @@ namespace Runner_sai
 
                         Console.WriteLine($"波形{waveIndex + 1}再生中... ({playedWaves[waveIndex]}, 振幅: {amplitudeScale:F2})");
                         autd.Send((testWave, focus));
-                        Thread.Sleep(5000);
+                        Thread.Sleep(2500);
                         autd.Send((new Silencer(), new Null()));
-                        Thread.Sleep(1000);
+                        Thread.Sleep(500);
                     }
 
-                    Console.WriteLine($"Wave1と同じ: ← キー, Wave2と同じ: → キー, 終了: Enter");
+                    Console.WriteLine($"Wave1と同じ: ← キー, Wave2と同じ: → キー, Wave1とWave2が同じ: ↑ キー, 終了: Enter");
                     Console.WriteLine($"再生された波形: Wave1={playedWaves[0]}, Wave2={playedWaves[1]}, Wave3={playedWaves[2]}");
 
-                    // 応答時間測定開始
-                    var stopwatch = Stopwatch.StartNew();
-
-                    // キー入力待ち
-                    while (true)
+                    // Wave1とWave2が同じかチェック
+                    if (playedWaves[0] == playedWaves[1])
                     {
-                        var key = Console.ReadKey(true).Key;
+                        Console.WriteLine("Wave1とWave2が同じです。自動的に↑キーを処理します。");
+                        
+                        // 応答時間測定開始
+                        var stopwatch = Stopwatch.StartNew();
+                        stopwatch.Stop();
+                        long responseTime = stopwatch.ElapsedMilliseconds;
+                        
+                        string userAnswer = "Same";
+                        totalTrials++;
+
+                        // CSVに結果を保存
+                        using (var writer = new StreamWriter(csvPath, true, System.Text.Encoding.UTF8))
+                        {
+                            string currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                            writer.WriteLine($"{currentTime},{envelopeFreq},{A_carrier_Freq},{B_carrier_Freq},{trialSet},{playedWaves[0]},{playedWaves[1]},{playedWaves[2]},{amplitudeScales[0]:F3},{amplitudeScales[1]:F3},{amplitudeScales[2]:F3},{userAnswer},{responseTime}");
+                        }
+
+                        Console.WriteLine($"回答: {userAnswer} (応答時間: {responseTime}ms)");
+                    }
+                    else
+                    {
+                        // 応答時間測定開始
+                        var stopwatch = Stopwatch.StartNew();
+
+                        // キー入力待ち
+                        while (true)
+                        {
+                            var key = Console.ReadKey(true).Key;
                         if (key == ConsoleKey.Enter)
                         {
                             Console.WriteLine($"\n=== 実験完了 ===");
@@ -184,25 +208,33 @@ namespace Runner_sai
                             autd.Close();
                             return;
                         }
-                        if (key == ConsoleKey.LeftArrow || key == ConsoleKey.RightArrow)
-                        {
-                            stopwatch.Stop();
-                            long responseTime = stopwatch.ElapsedMilliseconds;
-                            
-                            string userAnswer = key == ConsoleKey.LeftArrow ? "Wave1" : "Wave2";
-                            totalTrials++;
-
-                            // CSVに結果を保存
-                            using (var writer = new StreamWriter(csvPath, true, System.Text.Encoding.UTF8))
+                            if (key == ConsoleKey.LeftArrow || key == ConsoleKey.RightArrow || key == ConsoleKey.UpArrow)
                             {
-                                string currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                                writer.WriteLine($"{currentTime},{envelopeFreq},{A_carrier_Freq},{B_carrier_Freq},{trialSet},{playedWaves[0]},{playedWaves[1]},{playedWaves[2]},{amplitudeScales[0]:F3},{amplitudeScales[1]:F3},{amplitudeScales[2]:F3},{userAnswer},{responseTime}");
-                            }
+                                stopwatch.Stop();
+                                long responseTime = stopwatch.ElapsedMilliseconds;
+                                
+                                string userAnswer;
+                                if (key == ConsoleKey.LeftArrow)
+                                    userAnswer = "Wave1";
+                                else if (key == ConsoleKey.RightArrow)
+                                    userAnswer = "Wave2";
+                                else // UpArrow
+                                    userAnswer = "Same";
+                                
+                                totalTrials++;
 
-                            Console.WriteLine($"回答: {userAnswer} (応答時間: {responseTime}ms)");
-                            break;
+                                // CSVに結果を保存
+                                using (var writer = new StreamWriter(csvPath, true, System.Text.Encoding.UTF8))
+                                {
+                                    string currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                                    writer.WriteLine($"{currentTime},{envelopeFreq},{A_carrier_Freq},{B_carrier_Freq},{trialSet},{playedWaves[0]},{playedWaves[1]},{playedWaves[2]},{amplitudeScales[0]:F3},{amplitudeScales[1]:F3},{amplitudeScales[2]:F3},{userAnswer},{responseTime}");
+                                }
+
+                                Console.WriteLine($"回答: {userAnswer} (応答時間: {responseTime}ms)");
+                                break;
+                            }
+                            Console.WriteLine("無効なキーです。← または → または ↑ または Enter を押してください");
                         }
-                        Console.WriteLine("無効なキーです。← または → または Enter を押してください");
                     }
 
                     Thread.Sleep(2000); // 次の試行まで間隔

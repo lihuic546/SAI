@@ -92,7 +92,7 @@ namespace Runner_sai
             // CSV保存の準備
             string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
             string csvFileName = $"soundpressure_experiment_{timestamp}.csv";
-            string resultDir = Path.Combine("example", "result", "Runner0622_soundpressure");
+            string resultDir = Path.Combine("result", "Runner0622_soundpressure");
             string csvPath = Path.Combine(resultDir, csvFileName);
             Directory.CreateDirectory(resultDir);
             using (var writer = new StreamWriter(csvPath, false, System.Text.Encoding.UTF8))

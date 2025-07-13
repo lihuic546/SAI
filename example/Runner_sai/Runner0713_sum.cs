@@ -104,7 +104,7 @@ namespace Runner_sai
             // CSV保存の準備
             string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
             string csvFileName = $"sum_experiment_{timestamp}.csv";
-            string resultDir = Path.Combine("example", "result", "Runner0713_sum");
+            string resultDir = Path.Combine("result", "Runner0713_sum");
             string csvPath = Path.Combine(resultDir, csvFileName);
             
             // 結果保存ディレクトリを作成

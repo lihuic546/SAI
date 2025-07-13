@@ -30,10 +30,26 @@ namespace Runner_sai
         //     return (carrierList[i1], envelopeList[i2]);
         // }
 
+        // public static (int A_carrier_Freq, int B_carrier_Freq) NextFreqPair()
+        // {
+        //     int[] A_carrier_List = {0, 18, 30, 60, 120, 200};
+        //     int[] B_carrier_List = {0, 18, 30, 60, 120, 200};
+
+        //     int i1, i2;
+        //     do
+        //     {
+        //         i1 = _rng.Next(A_carrier_List.Length);
+        //         i2 = _rng.Next(B_carrier_List.Length);
+        //     }
+        //     while (i1 == i2);
+
+        //     return (A_carrier_List[i1], B_carrier_List[i2]);
+        // }
+
         public static (int A_carrier_Freq, int B_carrier_Freq) NextFreqPair()
         {
-            int[] A_carrier_List = {0, 18, 30, 60, 120, 200};
-            int[] B_carrier_List = {0, 18, 30, 60, 120, 200};
+            int[] A_carrier_List = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+            int[] B_carrier_List = {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
             int i1, i2;
             do

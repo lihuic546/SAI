@@ -1,6 +1,7 @@
 // Runner0622_soundpressure.cs - 音圧波形識別実験
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading;
 using AUTD3Sharp;
 using AUTD3Sharp.Gain;
@@ -85,13 +86,24 @@ namespace Runner_sai
             // --------------------------------
 
             Console.WriteLine("=== 音圧波形識別実験開始 ===");
-            Console.WriteLine("波形A → 波形B → ランダム波形 → キー入力");
-            Console.WriteLine("Aと同じ: ← キー, Bと同じ: → キー, 終了: Enter");
+            Console.WriteLine("Wave1: 波形AorB → Wave2: 波形AorB → Wave3: 波形AorB → キー入力(Wave3がWave1/Wave2のどちらと同じに感じたか)");
+            Console.WriteLine("Wave1と同じ: ← キー, Wave2と同じ: → キー, 終了: Enter");
+
+            // CSV保存の準備
+            string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            string csvFileName = $"soundpressure_experiment_{timestamp}.csv";
+            string resultDir = Path.Combine("example", "result", "Runner0622_soundpressure");
+            string csvPath = Path.Combine(resultDir, csvFileName);
+            Directory.CreateDirectory(resultDir);
+            using (var writer = new StreamWriter(csvPath, false, System.Text.Encoding.UTF8))
+            {
+                writer.WriteLine("Timestamp,EnvelopeFreq,A_CarrierFreq,B_CarrierFreq,TrialSet,Wave1,Wave2,Wave3,UserAnswer,ResponseTime_ms");
+            }
+            Console.WriteLine($"実験結果は {csvFileName} に保存されます");
 
             // 実験設定
             int envelopeFreq = 6; // Hz
             int totalTrials = 0;
-            int correctAnswers = 0;
 
             while (true)
             {
@@ -112,37 +124,35 @@ namespace Runner_sai
                     samplingConfig: 1000f * Hz
                 );
 
-                // 5回の試行
-                for (int trial = 1; trial <= 5; trial++)
+                var random = new Random();
+
+                // 10回の試行セット
+                for (int trialSet = 1; trialSet <= 10; trialSet++)
                 {
-                    Console.WriteLine($"\n試行 {trial}/5:");
+                    Console.WriteLine($"\n試行セット {trialSet}/10:");
+                    
+                    string[] playedWaves = new string[3];
 
-                    // 波形A再生（5秒）
-                    Console.WriteLine("波形A再生中...");
-                    autd.Send((modulationA, focus));
-                    Thread.Sleep(5000);
-                    autd.Send((new Silencer(), new Null()));
-                    Thread.Sleep(1000);
+                    // 3回のランダム波形再生
+                    for (int waveIndex = 0; waveIndex < 3; waveIndex++) 
+                    {
+                        // ランダムに波形AまたはBを選択
+                        bool isWaveA = random.Next(2) == 0;
+                        var testWave = isWaveA ? modulationA : modulationB;
+                        playedWaves[waveIndex] = isWaveA ? "A" : "B";
 
-                    // 波形B再生（5秒）
-                    Console.WriteLine("波形B再生中...");
-                    autd.Send((modulationB, focus));
-                    Thread.Sleep(5000);
-                    autd.Send((new Silencer(), new Null()));
-                    Thread.Sleep(1000);
+                        Console.WriteLine($"波形{waveIndex + 1}再生中... ({playedWaves[waveIndex]})");
+                        autd.Send((testWave, focus));
+                        Thread.Sleep(5000);
+                        autd.Send((new Silencer(), new Null()));
+                        Thread.Sleep(1000);
+                    }
 
-                    // ランダムに波形AまたはBを選択
-                    var random = new Random();
-                    bool isWaveA = random.Next(2) == 0;
-                    var testWave = isWaveA ? modulationA : modulationB;
-                    string correctAnswer = isWaveA ? "A" : "B";
+                    Console.WriteLine($"Wave1と同じ: ← キー, Wave2と同じ: → キー, 終了: Enter");
+                    Console.WriteLine($"再生された波形: Wave1={playedWaves[0]}, Wave2={playedWaves[1]}, Wave3={playedWaves[2]}");
 
-                    Console.WriteLine("テスト波形再生中...");
-                    autd.Send((testWave, focus));
-                    Thread.Sleep(5000);
-                    autd.Send((new Silencer(), new Null()));
-
-                    Console.WriteLine($"この波形は A か B か？ (← キー: A, → キー: B, Enter: 終了)");
+                    // 応答時間測定開始
+                    var stopwatch = Stopwatch.StartNew();
 
                     // キー入力待ち
                     while (true)
@@ -151,20 +161,27 @@ namespace Runner_sai
                         if (key == ConsoleKey.Enter)
                         {
                             Console.WriteLine($"\n=== 実験完了 ===");
-                            Console.WriteLine($"最終正答率: {correctAnswers}/{totalTrials} ({(double)correctAnswers/totalTrials*100:F1}%)");
+                            Console.WriteLine($"総試行数: {totalTrials}");
+                            Console.WriteLine($"結果は {csvFileName} に保存されました");
                             autd.Close();
                             return;
                         }
                         if (key == ConsoleKey.LeftArrow || key == ConsoleKey.RightArrow)
                         {
-                            string userAnswer = key == ConsoleKey.LeftArrow ? "A" : "B";
-                            bool isCorrect = userAnswer == correctAnswer;
+                            stopwatch.Stop();
+                            long responseTime = stopwatch.ElapsedMilliseconds;
                             
+                            string userAnswer = key == ConsoleKey.LeftArrow ? "Wave1" : "Wave2";
                             totalTrials++;
-                            if (isCorrect) correctAnswers++;
 
-                            Console.WriteLine($"回答: {userAnswer}, 正解: {correctAnswer} → {(isCorrect ? "正解!" : "不正解")}");
-                            Console.WriteLine($"現在の正答率: {correctAnswers}/{totalTrials} ({(double)correctAnswers/totalTrials*100:F1}%)");
+                            // CSVに結果を保存
+                            using (var writer = new StreamWriter(csvPath, true, System.Text.Encoding.UTF8))
+                            {
+                                string currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                                writer.WriteLine($"{currentTime},{envelopeFreq},{A_carrier_Freq},{B_carrier_Freq},{trialSet},{playedWaves[0]},{playedWaves[1]},{playedWaves[2]},{userAnswer},{responseTime}");
+                            }
+
+                            Console.WriteLine($"回答: {userAnswer} (応答時間: {responseTime}ms)");
                             break;
                         }
                         Console.WriteLine("無効なキーです。← または → または Enter を押してください");
